@@ -22,9 +22,11 @@ spring:
       host: ${REDIS_HOST:redis}
       port: ${REDIS_PORT:6379}
   kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS}
     # Kafka bootstrap servers managed via Environment Variables
     # Set via: SPRING_KAFKA_BOOTSTRAP_SERVERS (from kafka-config ConfigMap)
     producer:
+      bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS}
       acks: ${KAFKA_PRODUCER_ACKS:all}
       enable-idempotence: ${KAFKA_PRODUCER_IDEMPOTENCE:true}
       retries: ${KAFKA_PRODUCER_RETRIES:3}
@@ -38,6 +40,7 @@ spring:
         linger-ms: ${KAFKA_PRODUCER_LINGER_MS:20}
         batch-size: ${KAFKA_PRODUCER_BATCH_SIZE:32768}
     consumer:
+      bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS}
       # Bootstrap servers inherited from spring.kafka.bootstrap-servers (ENV var)
       group-id: wallet-read-updater
       auto-offset-reset: earliest
