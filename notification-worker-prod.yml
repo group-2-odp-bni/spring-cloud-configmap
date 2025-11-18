@@ -5,9 +5,9 @@ spring:
     username: ${MAIL_USERNAME:orange.wallet.bni@gmail.com}
     password: ${MAIL_PASSWORD}
   kafka:
-    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS}
+    bootstrap-servers: kafka.messaging.svc.cluster.local:9092
     producer:
-      bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS}
+      bootstrap-servers: kafka.messaging.svc.cluster.local:9092
 orange:
   user-service:
     base-url: http://user-service:8082

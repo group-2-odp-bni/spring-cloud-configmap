@@ -21,7 +21,9 @@ spring:
     redis:
       timeout: 60000
   kafka:
+    bootstrap-servers: kafka.messaging.svc.cluster.local:9092
     producer:
+      bootstrap-servers: kafka.messaging.svc.cluster.local:9092
       acks: ${KAFKA_PRODUCER_ACKS:all}
       enable-idempotence: ${KAFKA_PRODUCER_IDEMPOTENCE:true}
       retries: ${KAFKA_PRODUCER_RETRIES:3}
@@ -35,6 +37,7 @@ spring:
         linger-ms: ${KAFKA_PRODUCER_LINGER_MS:20}
         batch-size: ${KAFKA_PRODUCER_BATCH_SIZE:32768}
     consumer:
+      bootstrap-servers: kafka.messaging.svc.cluster.local:9092
       group-id: wallet-read-updater
       auto-offset-reset: earliest
       enable-auto-commit: false
