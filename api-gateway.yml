@@ -67,3 +67,6 @@ resilience4j.timelimiter:
     transaction-service:
       timeout-duration: 20s
       cancel-running-future: true
+    ml-engine:
+      timeout-duration: 300s
+      cancel-running-future: true
