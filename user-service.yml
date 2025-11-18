@@ -18,8 +18,8 @@ spring:
     default-schema: public
     locations: classpath:db/migration
     baseline-on-migrate: true
-    password: ${spring.datasource.password}
-    user: ${spring.datasource.username}
+    # Credentials managed via Kubernetes Secrets → Environment Variables
+    # Set via: SPRING_FLYWAY_USER and SPRING_FLYWAY_PASSWORD
 
   kafka:
     producer:
