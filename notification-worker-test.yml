@@ -17,14 +17,13 @@ orange:
     api-key: ${WAHA_API_KEY:f5010a544c324fc483623e2031b2b92f}
     session-name: ${WAHA_SESSION_NAME:default}
 
-# TODO: DELETED ON PRODUCTION
 logging:
   level:
     root: INFO
-    com.bni.orange: DEBUG
-    org.springframework.web: DEBUG
-    org.springframework.security: DEBUG
-    org.springframework.kafka: DEBUG
+    com.bni.orange: INFO
+    org.springframework.web: WARN
+    org.springframework.security: WARN
+    org.springframework.kafka: WARN
     org.springframework.boot.actuate: ERROR
     org.springframework.boot.actuate.endpoint.web: ERROR
     org.springframework.boot.actuate.endpoint: ERROR
