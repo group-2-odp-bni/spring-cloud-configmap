@@ -4,7 +4,7 @@ management:
       probability: 1.0
   otlp:
     tracing:
-      endpoint: http://tempo.observability.svc.cluster.local:4317
+      endpoint: ${OTLP_TRACING_ENDPOINT:http://tempo.observability.svc.cluster.local:4317}
 
 logging:
   pattern:
