@@ -1,7 +1,7 @@
 spring:
   cloud:
     gateway:
-      max-in-memory-size: 5MB
+      max-in-memory-size: 10MB
       server:
         webflux:
           routes:
@@ -102,16 +102,9 @@ spring:
               predicates:
                 - Path=/api/v1/split-bill/**, /api/v1/process-receipt, /api/v1/submit-split
               filters:
-                - name: RequestRateLimiter
-                  args:
-                    redis-rate-limiter.replenishRate: 10
-                    redis-rate-limiter.burstCapacity: 20
-                    redis-rate-limiter.requestedTokens: 1
-                    key-resolver: "#{@userKeyResolver}"
-                - name: CircuitBreaker
-                  args:
-                    name: ml-engine
-                    fallbackUri: forward:/fallback/ml
+                args:
+                  name: ml-engine
+                  fallbackUri: forward:/fallback/ml
 
   data:
     redis:
@@ -142,8 +135,6 @@ orange:
     block-duration: 1h
     suspicious-duration: 30m
     suspicious-threshold: 5
-    whitelistedIps:
-      - "34.50.103.122"
 
   payment:
     bni:
@@ -156,5 +147,6 @@ logging:
     org.springframework.web: WARN
     org.springframework.security: WARN
     org.springframework.kafka: WARN
-    org.hibernate: WARN
     org.springframework.boot.actuate: ERROR
+    org.springframework.boot.actuate.endpoint.web: ERROR
+    org.springframework.boot.actuate.endpoint: ERROR

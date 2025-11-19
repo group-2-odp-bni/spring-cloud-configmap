@@ -1,21 +1,20 @@
 spring:
   datasource:
-    url: jdbc:postgresql://postgresql-client.database.svc.cluster.local:5432/orange_wallet_db
-    username: ${DB_USERNAME:orange_wallet}
-    password: ${DB_PASSWORD}
+    url: ${DB_URL:jdbc:postgresql://postgres:5432/orange_db}
+    username: ${DB_USERNAME:mikasa}
+    password: ${DB_PASSWORD:mikasa}
     hikari:
-      maximum-pool-size: 15
+      maximum-pool-size: 10
       minimum-idle: 5
       connection-timeout: 30000
       idle-timeout: 600000
       max-lifetime: 1800000
       validation-timeout: 5000
       leak-detection-threshold: 60000
-  security:
-    oauth2:
-      resource-server:
-        jwt:
-          jwk-set-uri: http://authentication-service:8081/oauth2/jwks
+  data:
+    redis:
+      host: ${REDIS_HOST:redis}
+      port: ${REDIS_PORT:6379}
   kafka:
     bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS}
     producer:
@@ -34,7 +33,7 @@ spring:
         batch-size: ${KAFKA_PRODUCER_BATCH_SIZE:32768}
     consumer:
       bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS}
-      group-id: transaction-service-quick-transfer-sync
+      group-id: auth-service-profile-sync
       auto-offset-reset: earliest
       enable-auto-commit: false
       max-poll-records: ${KAFKA_CONSUMER_MAX_POLL_RECORDS:100}
@@ -43,31 +42,14 @@ spring:
       heartbeat-interval-ms: ${KAFKA_CONSUMER_HEARTBEAT_INTERVAL_MS:10000}
       concurrency: ${KAFKA_CONSUMER_CONCURRENCY:3}
 
-orange:
-  services:
-    user-service:
-      url: http://user-service:8082
-      timeout: 5000
-    wallet-service:
-      url: http://wallet-service:8083
-      timeout: 5000
-    authentication-service:
-      url: http://authentication-service:8081
-      timeout: 5000
-  integration:
-    bni-va:
-      base-url: ${BNI_VA_BASE_URL:https://api-sandbox.bni.co.id}
-      client-id: ${BNI_VA_CLIENT_ID:dummy-client-id}
-      client-secret: ${BNI_VA_CLIENT_SECRET:secret-key-for-dev}
-      timeout: 30s
-      mock-enabled: ${BNI_VA_MOCK_ENABLED:true}
-
+# TODO: DELETED ON PRODUCTION
 logging:
   level:
     root: INFO
-    com.bni.orange: INFO
-    org.springframework.web: WARN
-    org.springframework.security: WARN
-    org.springframework.kafka: WARN
-    org.hibernate: WARN
+    com.bni.orange: DEBUG
+    org.springframework.web: DEBUG
+    org.springframework.security: DEBUG
+    org.springframework.kafka: DEBUG
     org.springframework.boot.actuate: ERROR
+    org.springframework.boot.actuate.endpoint.web: ERROR
+    org.springframework.boot.actuate.endpoint: ERROR

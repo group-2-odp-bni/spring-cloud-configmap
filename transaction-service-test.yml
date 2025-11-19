@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:postgresql://postgresql-client.database.svc.cluster.local:5432/orange_wallet_db
-    username: ${DB_USERNAME:orange_wallet}
-    password: ${DB_PASSWORD}
+    url: ${DB_URL:jdbc:postgresql://postgres:5432/orange_db}
+    username: ${DB_USERNAME:mikasa}
+    password: ${DB_PASSWORD:mikasa}
     hikari:
       maximum-pool-size: 15
       minimum-idle: 5
@@ -65,9 +65,10 @@ orange:
 logging:
   level:
     root: INFO
-    com.bni.orange: INFO
-    org.springframework.web: WARN
-    org.springframework.security: WARN
-    org.springframework.kafka: WARN
-    org.hibernate: WARN
+    com.bni.orange: DEBUG
+    org.springframework.web: DEBUG
+    org.springframework.security: DEBUG
+    org.springframework.kafka: DEBUG
     org.springframework.boot.actuate: ERROR
+    org.springframework.boot.actuate.endpoint.web: ERROR
+    org.springframework.boot.actuate.endpoint: ERROR

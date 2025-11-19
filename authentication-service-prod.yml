@@ -46,14 +46,12 @@ spring:
       heartbeat-interval-ms: 10000
       concurrency: 3
 
-# TODO: DELETED ON PRODUCTION
 logging:
   level:
     root: INFO
-    com.bni.orange: DEBUG
-    org.springframework.web: DEBUG
-    org.springframework.security: DEBUG
-    org.springframework.kafka: DEBUG
+    com.bni.orange: INFO
+    org.springframework.web: WARN
+    org.springframework.security: WARN
+    org.springframework.kafka: WARN
+    org.hibernate: WARN
     org.springframework.boot.actuate: ERROR
-    org.springframework.boot.actuate.endpoint.web: ERROR
-    org.springframework.boot.actuate.endpoint: ERROR
