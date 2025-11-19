@@ -1,11 +1,42 @@
+logging:
+  pattern:
+    console: "%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID}){magenta} %clr(---){faint} %clr([%t]){faint} %clr([appName=${spring.application.name:}, traceId=%X{traceId:-}, spanId=%X{spanId:-}]){yellow} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}"
+
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
 management:
   tracing:
     sampling:
       probability: 1.0
   otlp:
     tracing:
-      endpoint: ${OTLP_TRACING_ENDPOINT:http://tempo.observability.svc.cluster.local:4317}
+      endpoint: http://localhost:4317 # Local Jaeger/Tempo instance
 
-logging:
-  pattern:
-    console: "%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID}){magenta} %clr(---){faint} %clr([%t]){faint} %clr([appName=${spring.application.name:}, traceId=%X{traceId:-}, spanId=%X{spanId:-}]){yellow} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}"
+---
+spring:
+  config:
+    activate:
+      on-profile: test
+management:
+  tracing:
+    sampling:
+      probability: 1.0
+  otlp:
+    tracing:
+      endpoint: http://tempo:4317 # Docker Compose Tempo service name
+
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
+management:
+  tracing:
+    sampling:
+      probability: 0.5 # Sample less in production for performance
+  otlp:
+    tracing:
+      endpoint: ${OTLP_TRACING_ENDPOINT:http://tempo.observability.svc.cluster.local:4317}
