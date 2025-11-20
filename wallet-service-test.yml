@@ -17,6 +17,8 @@ spring:
       resourceserver:
         jwt:
           jwk-set-uri: http://authentication-service:8081/oauth2/jwks
+    invite:
+      secret: ${INVITE_SECRET:dev-invite-secret-change-in-production}
   data:
     redis:
       host: ${REDIS_HOST:redis}
