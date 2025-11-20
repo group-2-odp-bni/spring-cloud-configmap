@@ -10,7 +10,7 @@ spring:
       bootstrap-servers: kafka.messaging.svc.cluster.local:9092
 orange:
   user-service:
-    base-url: http://user-service:8082
+    base-url: http://user-service:8080
     timeout: 5s
   waha-client:
     base-url: ${WAHA_BASE_URL:http://waha.orange-wallet.svc.cluster.local:3000}

@@ -6,7 +6,7 @@ spring:
         webflux:
           routes:
             - id: authentication-service-otp
-              uri: http://authentication-service:8081
+              uri: http://authentication-service:8080
               predicates:
                 - Path=/api/v1/auth/login, /api/v1/auth/register, /api/v1/auth/resend-otp, /api/v1/pin/reset/request
               filters:
@@ -22,7 +22,7 @@ spring:
                     fallbackUri: forward:/fallback/auth
 
             - id: authentication-service
-              uri: http://authentication-service:8081
+              uri: http://authentication-service:8080
               predicates:
                 - Path=/api/v1/auth/verify, /api/v1/auth/refresh, /api/v1/auth/logout, /api/v1/auth/pin, /api/v1/pin/**, /api/v1/sessions/**, /oauth2/jwks4
               filters:
@@ -32,7 +32,7 @@ spring:
                     fallbackUri: forward:/fallback/auth
 
             - id: user-service
-              uri: http://user-service:8082
+              uri: http://user-service:8080
               predicates:
                 - Path=/api/v1/user/**, /api/v1/users/**, /api/v1/users/profile/**
               filters:
@@ -45,7 +45,7 @@ spring:
                     fallbackUri: forward:/fallback/user
 
             - id: wallet-service
-              uri: http://wallet-service:8083
+              uri: http://wallet-service:8080
               predicates:
                 - Path=/api/v1/wallet/**, /api/v1/wallets/**
               filters:
@@ -58,7 +58,7 @@ spring:
                     fallbackUri: forward:/fallback/wallet
 
             - id: transaction-service-topup-external
-              uri: http://transaction-service:8084
+              uri: http://transaction-service:8080
               predicates:
                 - Path=/api/v1/topup/inquiry/**, /api/v1/topup/callback/**
               filters:
@@ -69,7 +69,7 @@ spring:
                     fallbackUri: forward:/fallback/transaction
 
             - id: transaction-service
-              uri: http://transaction-service:8084
+              uri: http://transaction-service:8080
               predicates:
                 - Path=/api/v1/transfers/**, /api/v1/transactions/**, /api/v1/quick-transfers/**, /api/v1/topup/**, /api/v1/contacts/**, /api/v1/split-bill-payments/**
               filters:
@@ -88,7 +88,7 @@ spring:
                     fallbackUri: forward:/fallback/transaction
 
             - id: ml-engine-shortlink
-              uri: http://ml-engine:8086
+              uri: http://ml-engine:8080
               predicates:
                 - Path=/s/**
               filters:
@@ -98,7 +98,7 @@ spring:
                     fallbackUri: forward:/fallback/ml
 
             - id: ml-engine-service
-              uri: http://ml-engine:8086
+              uri: http://ml-engine:8080
               predicates:
                 - Path=/api/v1/split-bill/**, /api/v1/process-receipt, /api/v1/submit-split
               filters:
@@ -122,7 +122,7 @@ spring:
     oauth2:
       resource-server:
         jwt:
-          jwk-set-uri: http://authentication-service:8081/oauth2/jwks
+          jwk-set-uri: http://authentication-service:8080/oauth2/jwks
 
 orange:
   cors:

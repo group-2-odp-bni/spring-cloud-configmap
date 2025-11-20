@@ -16,7 +16,7 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          jwk-set-uri: http://authentication-service:8081/oauth2/jwks
+          jwk-set-uri: http://authentication-service:8080/oauth2/jwks
   data:
     redis:
       timeout: 60000
@@ -66,7 +66,7 @@ app:
     from: ${SMTP_MAIL:orange.wallet.bni@gmail.com}
     delete-wallet-confirm-base-url: ${APP_DELETE_WALLET_CONFIRM_URL:https://app.orangebybni.my.id/wallet/delete-confirm}
   internal-user:
-    base-url: ${INTERNAL_USER_SERVICE_URL:http://user-service:8082}
+    base-url: ${INTERNAL_USER_SERVICE_URL:http://user-service:8080}
     connect-timeout: 5000
     read-timeout: 5
     write-timeout: 5

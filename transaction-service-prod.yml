@@ -15,7 +15,7 @@ spring:
     oauth2:
       resource-server:
         jwt:
-          jwk-set-uri: http://authentication-service:8081/oauth2/jwks
+          jwk-set-uri: http://authentication-service:8080/oauth2/jwks
   kafka:
     bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS}
     producer:
@@ -46,13 +46,13 @@ spring:
 orange:
   services:
     user-service:
-      url: http://user-service:8082
+      url: http://user-service:8080
       timeout: 5000
     wallet-service:
-      url: http://wallet-service:8083
+      url: http://wallet-service:8080
       timeout: 5000
     authentication-service:
-      url: http://authentication-service:8081
+      url: http://authentication-service:8080
       timeout: 5000
   integration:
     bni-va:
