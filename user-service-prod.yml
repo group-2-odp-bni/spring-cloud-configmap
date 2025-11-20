@@ -53,7 +53,7 @@ spring:
 orange:
   gcp:
     storage:
-      enabled: false  # Enable via ENV: GCS_ENABLED=true
+      enabled: true  # Enable via ENV: GCS_ENABLED=true
       # GCS config managed via Environment Variables if enabled
       bucket-name: orange-wallet-users-profiles
       project-id: orange-wallet-project
