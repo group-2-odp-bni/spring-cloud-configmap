@@ -17,8 +17,6 @@ spring:
       resourceserver:
         jwt:
           jwk-set-uri: http://authentication-service:8081/oauth2/jwks
-    invite:
-      secret: ${INVITE_SECRET:dev-invite-secret-change-in-production}
   data:
     redis:
       host: ${REDIS_HOST:redis}
@@ -82,10 +80,10 @@ app:
 logging:
   level:
     root: INFO
-    com.bni.orange: INFO
-    org.springframework.web: WARN
-    org.springframework.security: WARN
-    org.springframework.kafka: WARN
+    com.bni.orange: DEBUG
+    org.springframework.web: DEBUG
+    org.springframework.security: DEBUG
+    org.springframework.kafka: DEBUG
     org.springframework.boot.actuate: ERROR
     org.springframework.boot.actuate.endpoint.web: ERROR
     org.springframework.boot.actuate.endpoint: ERROR
