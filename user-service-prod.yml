@@ -25,8 +25,9 @@ spring:
   kafka:
     # Kafka bootstrap servers managed via Environment Variables
     # Set via: SPRING_KAFKA_BOOTSTRAP_SERVERS
-    bootstrap-servers: placeholder  # Will be overridden by ENV var
+    bootstrap-servers: ${SPRING_KAFKA_BOOTSTRAP_SERVERS:kafka.messaging.svc.cluster.local:9092}
     producer:
+      bootstrap-servers: ${SPRING_KAFKA_BOOTSTRAP_SERVERS:kafka.messaging.svc.cluster.local:9092}
       acks: all
       enable-idempotence: true
       retries: 3
@@ -40,6 +41,7 @@ spring:
         linger-ms: 20
         batch-size: 32768
     consumer:
+      bootstrap-servers: ${SPRING_KAFKA_BOOTSTRAP_SERVERS:kafka.messaging.svc.cluster.local:9092}
       group-id: user-service
       auto-offset-reset: earliest
       enable-auto-commit: false
