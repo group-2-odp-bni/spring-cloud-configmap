@@ -25,7 +25,7 @@ spring:
 
   security:
     invite:
-      secret: ${INVITE_SECRET}
+      secret: ${INVITE_SECRET:9evyY2Iopik4onDHa+ygvSoI97DJnUx+2JEOeO9ROUE=}
 
   kafka:
     admin:
