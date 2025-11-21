@@ -118,7 +118,7 @@ resilience:
     automatic-transition-from-open-to-half-open-enabled: true
 
 server:
-  port: 8085
+  port: ${SERVER_PORT:8085}
 
 logging:
   level:
