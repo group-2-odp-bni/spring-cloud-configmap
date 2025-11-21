@@ -49,9 +49,9 @@ spring:
 
 orange:
   jwt:
-    access-token-duration: 30d # todo revert
+    access-token-duration: 30m
     refresh-token-duration: 30d
-    state-token-duration: 5m
+    state-token-duration: 15m
   rsa:
     public-key: classpath:keys/public.pem
     private-key: classpath:keys/private.pem

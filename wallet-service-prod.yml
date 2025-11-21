@@ -59,9 +59,6 @@ spring:
             enable: true
 
 app:
-  invite:
-    ttl-seconds: 600
-    base-url: https://app.orangebybni.com/invites/claim
   mail:
     from: ${SMTP_MAIL:orange.wallet.bni@gmail.com}
     delete-wallet-confirm-base-url: ${APP_DELETE_WALLET_CONFIRM_URL:https://app.orangebybni.my.id/wallet/delete-confirm}
