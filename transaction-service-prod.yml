@@ -17,9 +17,9 @@ spring:
         jwt:
           jwk-set-uri: http://authentication-service:8080/oauth2/jwks
   kafka:
-    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS}
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:kafka.messaging.svc.cluster.local:9092}
     producer:
-      bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS}
+      bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:kafka.messaging.svc.cluster.local:9092}
       acks: ${KAFKA_PRODUCER_ACKS:all}
       enable-idempotence: ${KAFKA_PRODUCER_IDEMPOTENCE:true}
       retries: ${KAFKA_PRODUCER_RETRIES:3}
@@ -33,7 +33,7 @@ spring:
         linger-ms: ${KAFKA_PRODUCER_LINGER_MS:20}
         batch-size: ${KAFKA_PRODUCER_BATCH_SIZE:32768}
     consumer:
-      bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS}
+      bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:kafka.messaging.svc.cluster.local:9092}
       group-id: transaction-service-quick-transfer-sync
       auto-offset-reset: earliest
       enable-auto-commit: false
