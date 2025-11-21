@@ -90,7 +90,7 @@ wallet:
     enabled: ${WALLET_EVENTS_ENABLED:true}
 app:
   invite:
-    ttl-seconds: 600
+    ttl-seconds: 86400
     base-url: https://app.orangebybni.my.id/invites/claim
   mail:
     from: ${SMTP_MAIL:orange.wallet.bni@gmail.com}
