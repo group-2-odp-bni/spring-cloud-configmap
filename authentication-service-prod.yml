@@ -1,11 +1,10 @@
 spring:
   datasource:
-    # Database connection URL (non-sensitive)
     url: jdbc:postgresql://postgresql-client.database.svc.cluster.local:5432/orange_wallet_db
-    # Credentials managed via Kubernetes Secrets → Environment Variables
-    # Set via: SPRING_DATASOURCE_USERNAME and SPRING_DATASOURCE_PASSWORD
+    username: ${DB_USERNAME:orange_wallet}
+    password: ${DB_PASSWORD}
     hikari:
-      maximum-pool-size: 10
+      maximum-pool-size: 15
       minimum-idle: 5
       connection-timeout: 30000
       idle-timeout: 600000
@@ -14,16 +13,13 @@ spring:
       leak-detection-threshold: 60000
   data:
     redis:
-      # Redis connection managed via Environment Variables
-      # Set via: SPRING_DATA_REDIS_HOST and SPRING_DATA_REDIS_PORT
+      host: ${REDIS_HOST}
+      port: ${REDIS_PORT}
       timeout: 60000
   kafka:
-    # Kafka bootstrap servers managed via Environment Variables
-    # Set via: SPRING_KAFKA_BOOTSTRAP_SERVERS
     bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:kafka.messaging.svc.cluster.local:9092}
     producer:
       bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:kafka.messaging.svc.cluster.local:9092}
-      # Producer settings with sensible defaults
       acks: all
       enable-idempotence: true
       retries: 3
@@ -38,7 +34,6 @@ spring:
         batch-size: 32768
     consumer:
       bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:kafka.messaging.svc.cluster.local:9092}
-      # Consumer settings
       group-id: auth-service-profile-sync
       auto-offset-reset: earliest
       enable-auto-commit: false
