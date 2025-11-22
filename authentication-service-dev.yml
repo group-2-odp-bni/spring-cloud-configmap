@@ -42,6 +42,11 @@ spring:
       heartbeat-interval-ms: 10000
       concurrency: 3
 
+orange:
+  rsa:
+    public-key: classpath:keys/public.pem
+    private-key: classpath:keys/private.pem
+
 logging:
   level:
     root: INFO

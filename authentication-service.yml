@@ -52,9 +52,10 @@ orange:
     access-token-duration: 30m
     refresh-token-duration: 30d
     state-token-duration: 15m
-  rsa:
-    public-key: classpath:keys/public.pem
-    private-key: classpath:keys/private.pem
+  # RSA key paths removed - infrastructure-specific, managed via ENV vars
+  # Local dev: classpath:keys/public.pem & classpath:keys/private.pem
+  # K8s: file:/app/keys/public.pem & file:/app/keys/private.pem (from Secret mount)
+  # Set via: ORANGE_RSA_PUBLICKEY and ORANGE_RSA_PRIVATEKEY environment variables
   redis:
     prefix:
       otp: "otp:"
