@@ -18,11 +18,9 @@ management:
       show-details: always
       probes:
         enabled: true
-    prometheus:
-      enabled: true
-  metrics:
-    export:
-      prometheus:
+  prometheus:
+    metrics:
+      export:
         enabled: true
   tracing:
     sampling:
@@ -47,11 +45,9 @@ management:
       show-details: always
       probes:
         enabled: true
-    prometheus:
-      enabled: true
-  metrics:
-    export:
-      prometheus:
+  prometheus:
+    metrics:
+      export:
         enabled: true
   tracing:
     enabled: false
@@ -74,11 +70,9 @@ management:
       show-details: when-authorized
       probes:
         enabled: true
-    prometheus:
-      enabled: true
-  metrics:
-    export:
-      prometheus:
+  prometheus:
+    metrics:
+      export:
         enabled: true
   tracing:
     enabled: false  # Disable tracing in prod until tempo properly configured
