@@ -102,6 +102,9 @@ spring:
               predicates:
                 - Path=/api/v1/split-bill/**, /api/v1/process-receipt, /api/v1/submit-split
               filters:
+                - name: ScopeValidation
+                  args:
+                    requiredScope: FULL_ACCESS
                 - name: CircuitBreaker
                   args:
                     name: ml-engine
