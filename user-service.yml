@@ -115,9 +115,3 @@ logging:
     org.springframework.boot.actuate: ERROR
     org.springframework.boot.actuate.endpoint.web: ERROR
     org.springframework.boot.actuate.endpoint: ERROR
-
-management:
-  endpoints:
-    web:
-      exposure:
-        include: health,info
