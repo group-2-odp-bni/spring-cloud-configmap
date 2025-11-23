@@ -19,8 +19,9 @@ spring:
           jwk-set-uri: http://authentication-service:8080/oauth2/jwks
   data:
     redis:
-      # Redis connection managed via Environment Variables
-      # Set via: SPRING_DATA_REDIS_HOST and SPRING_DATA_REDIS_PORT
+      host: ${REDIS_HOST}
+      port: ${REDIS_PORT}
+      password: ${REDIS_PASSWORD}
       timeout: 60000
   kafka:
     # Kafka bootstrap servers managed via Environment Variables
