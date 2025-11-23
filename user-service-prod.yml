@@ -1,9 +1,8 @@
 spring:
   datasource:
-    # Database connection URL (non-sensitive)
-    url: jdbc:postgresql://postgresql-client.database.svc.cluster.local:5432/orange_wallet_db
-    # Credentials managed via Kubernetes Secrets → Environment Variables
-    # Set via: SPRING_DATASOURCE_USERNAME and SPRING_DATASOURCE_PASSWORD
+    url: ${DB_URL:jdbc:postgresql://postgresql-client.database.svc.cluster.local:5432/orange_wallet_db}
+    username: ${DB_USERNAME:orange_wallet}
+    password: ${DB_PASSWORD}
     hikari:
       maximum-pool-size: 10
       minimum-idle: 5
@@ -24,8 +23,6 @@ spring:
       password: ${REDIS_PASSWORD}
       timeout: 60000
   kafka:
-    # Kafka bootstrap servers managed via Environment Variables
-    # Set via: SPRING_KAFKA_BOOTSTRAP_SERVERS
     bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:kafka.messaging.svc.cluster.local:9092}
     producer:
       bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:kafka.messaging.svc.cluster.local:9092}
