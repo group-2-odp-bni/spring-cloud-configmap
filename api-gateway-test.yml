@@ -147,6 +147,7 @@ logging:
     org.springframework.web: WARN
     org.springframework.security: WARN
     org.springframework.kafka: WARN
+    org.hibernate: WARN
     org.springframework.boot.actuate: ERROR
     org.springframework.boot.actuate.endpoint.web: ERROR
     org.springframework.boot.actuate.endpoint: ERROR
