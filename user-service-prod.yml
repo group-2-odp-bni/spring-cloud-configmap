@@ -56,11 +56,12 @@ spring:
 orange:
   gcp:
     storage:
-      enabled: true  # Enable via ENV: GCS_ENABLED=true
-      # GCS config managed via Environment Variables if enabled
-      bucket-name: orange-wallet-users-profiles
-      project-id: orange-wallet-project
-      service-account-email: orange-wallet-storage@orange-wallet-project.iam.gserviceaccount.com
+      # All GCS configuration managed via Kubernetes ConfigMap → Environment Variables
+      enabled: ${GCS_ENABLED:false}
+      bucket-name: ${GCS_BUCKET_NAME:orange-wallet-users-profiles-275033978165}
+      project-id: ${GCP_PROJECT_ID:orange-wallet-infrastructure}
+      service-account-email: ${GCS_SERVICE_ACCOUNT_EMAIL:orange-wallet-storage@orange-wallet-infrastructure.iam.gserviceaccount.com}
+      signed-url-duration-minutes: ${GCS_SIGNED_URL_DURATION:60}
 
 logging:
   level:
