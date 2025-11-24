@@ -80,4 +80,4 @@ management:
       probability: 1.0
   otlp:
     tracing:
-      endpoint: http://otel-collector.observability.svc.cluster.local:4318
+      endpoint: http://otel-collector.observability.svc.cluster.local:4318/v1/traces
