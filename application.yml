@@ -75,6 +75,9 @@ management:
       export:
         enabled: true
   tracing:
-    enabled: false  # Disable tracing in prod until tempo properly configured
+    enabled: true
     sampling:
-      probability: 0.0
+      probability: 1.0
+  otlp:
+    tracing:
+      endpoint: http://otel-collector.observability.svc.cluster.local:4317
